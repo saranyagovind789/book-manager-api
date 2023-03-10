@@ -24,6 +24,7 @@ public class BookManagerServiceImpl implements BookManagerService {
     @Override
     public Book insertBook(Book book) {
         return bookManagerRepository.save(book);
+
     }
 
     @Override
@@ -44,4 +45,9 @@ public class BookManagerServiceImpl implements BookManagerService {
         bookManagerRepository.save(retrievedBook);
     }
 
+    //User Story 5 - Delete Book By Id Solution
+    @Override
+    public void deleteBookById(Long id){
+        bookManagerRepository.deleteById(id);
+    }
 }
