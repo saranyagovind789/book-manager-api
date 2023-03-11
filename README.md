@@ -35,10 +35,32 @@ Here are some tasks for you to work on:
 Explore the code and make notes on the following features and how it is being implemented in the code. We'd like you to note down what classes and methods are used and how the objects interact.
 
 The features are:
-- Get All Books
-- Get a Book by ID
-- Add a Book
-- Update a Book
+- Get All Books : When User makes a GET request to /api/v1/book, the BookManagerController.getAllBooks() is called.
+ FRom this method, bookManagerService.getAllBooks() is called. From this method,  bookManagerRepository.findAll() is called
+ bookManagerRepository then call the Model Book to query the DB. DataBase returns the book information back to BookManagerRepository.
+ bookManagerRepository returns the data to BookManagerService.
+ BookManagerService then returns the information to BookManagerController.
+ From BookManagerController, it then returns the response to the User.
+- 
+- Get a Book by ID : When User makes a GET request to /api/v1/book/id, the BookManagerController.getBookById(@PathVariable Long bookId)is called.
+  FRom this method, bookManagerService.getBookById(Long id) is called. From this method, bookManagerRepository.findById(id) is called
+  bookManagerRepository then call the Model Book to query the DB. DataBase returns the book information back to BookManagerRepository.
+  bookManagerRepository returns the data to BookManagerService.
+  BookManagerService then returns the information to BookManagerController.
+  From BookManagerController, it then returns the response to the User.
+
+  - Add a Book  : When User makes a POST request to /api/v1/book  with RequestBody book, BookManagerController.addBook(@RequestBody Book book) is called.
+  From this method, bookManagerService.insertBook(Book book) is called. From this method, bookManagerRepository.save() is called,
+  BookManagerRepository then calls the model Book to save the Book table.
+ 
+  Database then returns the information to BookManagerRepository, From BookManagerRepository the response is given to BookManagerService.
+  BookManagerService then returns the response to BookManagerController.
+  From BookManagerController then returns the response to the User.
+
+- Update a Book : When User makes a POST request to /api/v1/book with RequestBody book, 
+ BookManagerController.updateBookById(@PathVariable("bookId") Long bookId, @RequestBody Book book) is called.
+    From this method,BookManagerService.updateBookById(Long id, Book book) is called.
+    from this method, bookManagerRepository.findbyId is called,BookManagerRepository then calls the
 
 📘 Task 1: Implement the following User Story with tests.
 
